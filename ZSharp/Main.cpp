@@ -5,7 +5,7 @@
 //bool DEVELOPER_MESSAGES = true;
 #define DEVELOPER_MESSAGES false
 #define EXAMPLE_PROJECT false
-#define NAMEVERSION "ZSharp v2.1.3-alpha"
+#define NAMEVERSION "pepC v1.0.0-alpha"
 
 #if defined(__unix__)
 #define UNIX true
