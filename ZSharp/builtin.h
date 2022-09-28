@@ -394,21 +394,23 @@ bool AxisAlignedCollision(const Sprite& a, const Sprite& b) // AABB - AABB colli
 // Executes 
 boost::any ZSFunction(const string& name, const vector<boost::any>& args)
 {
-	if (name == "ZS.Math.Sin")
+	if (name == "pepC.Math.Sin")
 		return sin(AnyAsFloat(args.at(0)));
-	else if (name == "ZS.Math.Cos")
+	else if (name == "pepC.Math.Cos")
 		return cos(AnyAsFloat(args.at(0)));
-	else if (name == "ZS.Math.Tan")
+	else if (name == "pepC.Math.Tan")
 		return tan(AnyAsFloat(args.at(0)));
-	else if (name == "ZS.Math.Round")
+	else if (name == "pepC.Math.Round")
 		return AnyAsInt(args.at(0));
-	else if (name == "ZS.Math.Lerp")
+	else if (name == "pepC.Math.Lerp")
 		return lerp(AnyAsFloat(args.at(0)), AnyAsFloat(args.at(1)), AnyAsFloat(args.at(2)));
-	else if (name == "ZS.Math.Abs")
+	else if (name == "pepC.Math.Abs")
 		return abs(AnyAsFloat(args.at(0)));
-	else if (name == "ZS.Graphics.Init")
+	// sdl port code
+	else if (name == "pepC.Graphics.Init")
 	{
 #if DEVELOPER_MESSAGES == true
+		
 		InterpreterLog("Init graphics");
 #endif
 		if (args.size() <= 3)
@@ -416,7 +418,7 @@ boost::any ZSFunction(const string& name, const vector<boost::any>& args)
 		else
 			initGraphics(StringRaw(AnyAsString(args.at(0))), AnyAsInt(args.at(1)), AnyAsInt(args.at(2)), AnyAsInt(args.at(3)));
 	}
-	else if (name == "ZS.Graphics.Sprite")
+	else if (name == "pepC.Graphics.Sprite")
 	{
 		string path = StringRaw(AnyAsString(args.at(0)));
 		if (count(path, '/') == 0)
@@ -427,18 +429,18 @@ boost::any ZSFunction(const string& name, const vector<boost::any>& args)
 		Sprite s(StringRaw(AnyAsString(args.at(0))), any_cast<Vec2>(args.at(1)), any_cast<Vec2>(args.at(2)), AnyAsFloat(args.at(3)));
 		return s;
 	}
-	else if (name == "ZS.Graphics.DrawPixel")
+	else if (name == "pepC.Graphics.DrawPixel")
 	{
 		SDL_SetRenderDrawColor(gRenderer, AnyAsInt(args.at(2)), AnyAsInt(args.at(3)), AnyAsInt(args.at(4)), 255);
 		SDL_RenderDrawPoint(gRenderer, AnyAsInt(args.at(0)), AnyAsInt(args.at(1)));
 		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
 	}
 		//DrawPixel(AnyAsInt(args.at(0)), AnyAsInt(args.at(1)), AnyAsInt(args.at(2)), AnyAsInt(args.at(3)), AnyAsInt(args.at(4)));
-	else if (name == "ZS.Graphics.Draw")
+	else if (name == "pepC.Graphics.Draw")
 		any_cast<Sprite>(args.at(0)).Draw();
-	else if (name == "ZS.Graphics.Load")
+	else if (name == "pepC.Graphics.Load")
 		any_cast<Sprite>(args.at(0)).Load();
-	else if (name == "ZS.Graphics.Text")
+	else if (name == "pepC.Graphics.Text")
 	{
 		string path = StringRaw(AnyAsString(args.at(1)));
 		if (count(path, '/') == 0)
@@ -457,26 +459,26 @@ boost::any ZSFunction(const string& name, const vector<boost::any>& args)
 			return t;
 		}
 	}
-	else if (name == "ZS.Graphics.DrawText")
+	else if (name == "pepC.Graphics.DrawText")
 		any_cast<Text>(args.at(0)).Draw();
-	else if (name == "ZS.Graphics.LoadText")
+	else if (name == "pepC.Graphics.LoadText")
 		any_cast<Text>(args.at(0)).Load();
-	else if (name == "ZS.Physics.AxisAlignedCollision")
+	else if (name == "pepC.Physics.AxisAlignedCollision")
 	{
 		return AxisAlignedCollision(any_cast<Sprite>(args.at(0)), any_cast<Sprite>(args.at(1)));
 	}
-	else if (name == "ZS.Input.GetKey")
+	else if (name == "pepC.Input.GetKey")
 		return KEYS[StringRaw(any_cast<string>(args.at(0)))] == 1;
-	else if (name == "ZS.System.Print")
+	else if (name == "pepC.System.Print")
 		cout << StringRaw(AnyAsString(args.at(0)));
-	else if (name == "ZS.System.PrintLine")
+	else if (name == "pepC.System.PrintLine")
 		cout << StringRaw(AnyAsString(args.at(0))) << endl;
-	else if (name == "ZS.System.Vec2")
+	else if (name == "pepC.System.Vec2")
 	{
 		Vec2 v(AnyAsFloat(args.at(0)), AnyAsFloat(args.at(1)));
 		return v;
 	}
-	else if (name == "ZS.System.Command"){
+	else if (name == "pepC.System.Command"){
 		string command = StringRaw(AnyAsString(args.at(0)));
 		//int command_len = command.length();
 		//char* command_char_arr=new char[command_len + 1];
