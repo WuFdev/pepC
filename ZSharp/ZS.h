@@ -107,13 +107,13 @@ func SetPixel(x, y, r, g, b)
 }
 
 // Prints input value to console
-func Print(strToPrint)
+func print(strToPrint)
 {
 	ZS.System.Print(strToPrint)
 }
 
 // Prints input value to console with appended newline '\n'
-func Printl(strToPrint)
+func printl(strToPrint)
 {
 	ZS.System.PrintLine(strToPrint)
 }
